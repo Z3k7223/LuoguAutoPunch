@@ -1,0 +1,35 @@
+name: 洛谷自动打卡
+
+on:
+  # 1. 定时触发
+  schedule:
+    #这是 UTC 时间的 00:00，对应北京时间早上 08:00
+    - cron: '0 0 * * *'
+  # 2. 允许手动触发 (方便测试)
+  workflow_dispatch:
+
+jobs:
+  punch:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # 第一步：下载你的代码仓库
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    # 第二步：安装 Python 环境
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    # 第三步：安装 requests 库
+    - name: Install Dependencies
+      run: pip install -r requirements.txt
+
+    # 第四步：运行脚本
+    - name: Run Punch Script
+      env:
+        # 把 Secrets 里的密码注入到环境变量中
+        LUOGU_COOKIE: ${{ secrets.LUOGU_COOKIE }}
+      run: python main.py
