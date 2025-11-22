@@ -49,7 +49,13 @@ class JuejinBrowser:
         
         with sync_playwright() as p:
             # 启动 Chrome (headless=True 表示无头模式，不显示界面，适合服务器跑)
-            browser = p.chromium.launch(headless=False,slow_mo=1000)
+            is_github = os.getenv("GITHUB_ACTIONS") == "true"
+            
+            print(f"⚙️ 当前运行环境: {'GitHub Actions (云端)' if is_github else 'Local (本地)'}")
+            
+            # 如果是云端，必须 True (无头模式)；如果是本地，可以是 False (看界面)
+            # 这里的逻辑是：如果是云端 -> True；本地 -> False
+            browser = p.chromium.launch(headless=is_github, slow_mo=1000)
             context = browser.new_context(
                 user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
             )
@@ -155,4 +161,5 @@ class JuejinBrowser:
                 send_notification("掘金浏览器打卡", final_msg)
 
 if __name__ == "__main__":
+
     JuejinBrowser().run()
