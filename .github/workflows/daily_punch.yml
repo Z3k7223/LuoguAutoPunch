@@ -33,4 +33,5 @@ jobs:
       env:
         # 把 Secrets 里的密码注入到环境变量中
         LUOGU_COOKIE: ${{ secrets.LUOGU_COOKIE }}
+        PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
       run: python main.py
