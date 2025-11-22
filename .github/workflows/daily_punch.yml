@@ -37,8 +37,8 @@ jobs:
         LUOGU_COOKIE: ${{ secrets.LUOGU_COOKIE }}
         PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
       run: python main.py
-    - name: Run Juejin Script
-      env:
-        JUEJIN_COOKIE: ${{ secrets.JUEJIN_COOKIE }}
-        PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
-      run: python juejin.py
+    # - name: Run Juejin Script
+    #  env:
+    #    JUEJIN_COOKIE: ${{ secrets.JUEJIN_COOKIE }}
+    #    PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+    #  run: python juejin.py
