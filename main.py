@@ -89,7 +89,7 @@ def luogu_punch():
         elif code == 201:
             msg = "✅ 今天已经打过卡了"
             print(msg)
-            send_notification("今日已经打卡 ✅", msg)
+            # send_notification("今日已经打卡 ✅", msg)
             # 这种通常不需要通知，太频繁了烦人
             
         else:
@@ -112,4 +112,5 @@ def luogu_punch():
 
 if __name__ == "__main__":
     luogu_punch()
+
 
